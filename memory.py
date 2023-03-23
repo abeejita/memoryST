@@ -3,7 +3,9 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+emojiTiles = ["\U0001F600", "\U0001F603", "\U0001F604", "\U0001F601", "\U0001F606", "\U0001F605", "\U0001F923", "\U0001F602", "\U0001F642", "\U0001F643", "\U0001F609", "\U0001F60A", "\U0001F607", "\U0001F970", "\U0001F60D", "\U0001F929", "\U0001F618", "\U0001F617", "\U0001F61A", "\U0001F619", "\U0001F60B", "\U0001F61B", "\U0001F61C", "\U0001F92A", "\U0001F61D", "\U0001F911", "\U0001F917", "\U0001F92D", "\U0001F92B", "\U0001F914", "\U0001F910", "\U0001F928"]
+emojiTiles = [val for val in emojiTiles for _ in (0, 1)]
+
 state = {'mark': None}
 hide = [True] * 64
 
@@ -32,7 +34,7 @@ def tap(x, y):
     spot = index(x, y)
     mark = state['mark']
 
-    if mark is None or mark == spot or tiles[mark] != tiles[spot]:
+    if mark is None or mark == spot or emojiTiles[mark] != emojiTiles[spot]:
         state['mark'] = spot
     else:
         hide[spot] = False
@@ -58,12 +60,12 @@ def draw():
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(emojiTiles[mark], font=('Arial', 30, 'normal'))
 
     update()
     ontimer(draw, 100)
 
-shuffle(tiles)
+shuffle(emojiTiles)
 setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
