@@ -10,6 +10,7 @@
 from random import *
 from turtle import *
 from freegames import path
+import time
 
 car = path('car.gif')
 
@@ -53,7 +54,6 @@ emojiTiles = [val for val in emojiTiles for _ in (0, 1)]
 
 state = {'mark': None}
 hide = [True] * 64
-
 # Se crea una variable para guardar el número de taps
 # que el jugador hace.
 numero_taps = 0
@@ -107,7 +107,14 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
+# Función para revisar si todas las casillas ya han sido reveladas
+# No tiene parámetros.
+# Regresa True si todas las casillas ya han sido reveladas, False en otro caso.
+def allTilesRevealed():
+    for tile in hide:
+        if tile:
+            return False
+    return True
 # Función que dibuja la imagen, las casillas y taps.
 # No tiene parámetros.
 # No hay valor de retorno.
@@ -136,10 +143,14 @@ def draw():
     up()
     goto(x=-197, y=183)
     write(numero_taps, False, font=('Arial', 10, 'normal'))
-    
+    if allTilesRevealed():
+        goto(-110,-30)
+        color('white')
+        write("GANASTE",False, font=('Arial',35,'normal'))
     update()
-    ontimer(draw, 100)
 
+        
+    ontimer(draw, 100)
 shuffle(emojiTiles)
 setup(420, 420, 370, 0)
 addshape(car)
