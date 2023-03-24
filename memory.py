@@ -106,6 +106,7 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
 # Función para revisar si todas las casillas ya han sido reveladas
 # No tiene parámetros.
 # Regresa True si todas las casillas ya han sido reveladas, False en otro caso.
@@ -114,6 +115,7 @@ def allTilesRevealed():
         if tile:
             return False
     return True
+
 # Función que dibuja la imagen, las casillas y taps.
 # No tiene parámetros.
 # No hay valor de retorno.
@@ -142,6 +144,8 @@ def draw():
     up()
     goto(x=-197, y=183)
     write(numero_taps, False, font=('Arial', 10, 'normal'))
+
+    # Se despliega si el usuario ganó el juego.
     if allTilesRevealed():
         goto(-110,-30)
         color('white')
@@ -150,6 +154,7 @@ def draw():
 
         
     ontimer(draw, 100)
+    
 shuffle(emojiTiles)
 setup(420, 420, 370, 0)
 addshape(car)
