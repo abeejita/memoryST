@@ -53,6 +53,7 @@ emojiTiles = [val for val in emojiTiles for _ in (0, 1)]
 
 state = {'mark': None}
 hide = [True] * 64
+
 # Se crea una variable para guardar el número de taps
 # que el jugador hace.
 numero_taps = 0
@@ -154,7 +155,7 @@ def draw():
 
         
     ontimer(draw, 100)
-    
+
 shuffle(emojiTiles)
 setup(420, 420, 370, 0)
 addshape(car)
