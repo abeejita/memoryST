@@ -8,6 +8,7 @@ emojiTiles = [val for val in emojiTiles for _ in (0, 1)]
 
 state = {'mark': None}
 hide = [True] * 64
+numero_taps = 0
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -33,13 +34,18 @@ def tap(x, y):
     "Update mark and hidden tiles based on tap."
     spot = index(x, y)
     mark = state['mark']
+    global numero_taps
 
     if mark is None or mark == spot or emojiTiles[mark] != emojiTiles[spot]:
         state['mark'] = spot
+        numero_taps += 1
+        print(numero_taps)
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        numero_taps += 1
+        print(numero_taps)
 
 def draw():
     "Draw image and tiles."
@@ -58,10 +64,12 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 5, y + 5)
         color('black')
         write(emojiTiles[mark], font=('Arial', 30, 'normal'))
 
+    goto(x=-212, y=198)
+    write(numero_taps, False, font=('Arial', 10, 'normal'))
     update()
     ontimer(draw, 100)
 
