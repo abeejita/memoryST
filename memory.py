@@ -10,7 +10,6 @@
 from random import *
 from turtle import *
 from freegames import path
-import time
 
 car = path('car.gif')
 
