@@ -153,7 +153,6 @@ def draw():
         write("GANASTE",False, font=('Arial',35,'normal'))
     update()
 
-        
     ontimer(draw, 100)
 
 shuffle(emojiTiles)
